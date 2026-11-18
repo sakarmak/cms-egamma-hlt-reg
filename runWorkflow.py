@@ -5,7 +5,7 @@ import argparse
 
 SAMPLE_GENSIM = "/DoubleElectron_FlatPt-1To100-gun/Phase2Spring24GS-140X_mcRun4_realistic_v4-v1/GEN-SIM"
 SAMPLE_SPRING24 = "/DoubleElectron_FlatPt-1To100-gun/Phase2Spring24DIGIRECOMiniAOD-PU200_Trk1GeV_140X_mcRun4_realistic_v4-v2/GEN-SIM-DIGI-RAW-MINIAOD"
-WORKDIR = "/afs/cern.ch/work/m/mmatthew/private/test_workflow/cms-egamma-hlt-reg/" 
+WORKDIR = "/afs/cern.ch/work/s/sakarmak/private/EGammaHLT_Regression_16_1_0_pre2/cms-egamma-hlt-reg" 
 N = 20
 
 def getFile(sample):
@@ -33,7 +33,7 @@ def setup_gensim_cfg():
 --conditions 140X_mcRun4_realistic_v4 \
 --step DIGI:pdigi_valid,L1TrackTrigger,L1,DIGI2RAW,HLT:75e33 \
 --nThreads 8 \
---geometry Extended2026D110 \
+--geometry ExtendedRun4D121 \
 --nStreams 2 \
 --filein file:/eos/cms/store/group/dpg_hgcal/comm_hgcal/mmatthew/BDT/high_stats/electrons/s1GenSim/4d53b6f8-d99b-407f-a03a-516709227b66.root \
 --era Phase2C17I13M9 \
@@ -47,8 +47,8 @@ def setup_gensim_cfg():
 def setup_spring24_cfg():
     file = getFile(SAMPLE_SPRING24)
     setupL1 = " cmsDriver.py Phase2 -s L1,L1TrackTrigger \
---conditions auto:phase2_realistic_T33 \
---geometry Extended2026D110 \
+--conditions auto:phase2_realistic_T35 \
+--geometry ExtendedRun4D110 \
 --era Phase2C17I13M9 \
 --eventcontent FEVTDEBUGHLT \
 --datatier GEN-SIM-DIGI-RAW-MINIAOD \
@@ -64,8 +64,8 @@ def setup_spring24_cfg():
     
 
     setupHLT = " cmsDriver.py Phase2 -s L1P2GT,HLT:75e33 --processName=HLTX \
---conditions auto:phase2_realistic_T33 \
---geometry Extended2026D110 \
+--conditions auto:phase2_realistic_T35 \
+--geometry ExtendedRun4D110 \
 --era Phase2C17I13M9 \
 --eventcontent FEVTDEBUGHLT \
 --customise SLHCUpgradeSimulations/Configuration/aging.customise_aging_1000 \
@@ -90,7 +90,7 @@ def run_reg():
     cmd2 = "mkdir %s"%regDir
     os.system("%s;%s"%(cmd1,cmd2))
 
-    cmd3 = "cd CMSSW_14_2_0_pre2/src/EgRegresTrainerLegacy"
+    cmd3 = "cd CMSSW_16_1_0_pre2/src/EgRegresTrainerLegacy"
     cmd4 = "export PATH=$PATH:./bin/$SCRAM_ARCH"
     cmd5 = "export ROOT_INCLUDE_PATH=$ROOT_INCLUDE_PATH:$PWD/include"
     cmd6 = "python3 scripts/runSCRegTrainings.py --era \"Run3\" -i %s -o %s"%(ntupDir, regDir)
@@ -110,7 +110,7 @@ parser.add_argument("--reg_only",action="store_true",default=False)
 parser.add_argument("--sample_gensim",type=str,default = "/DoubleElectron_FlatPt-1To100-gun/Phase2Spring24GS-140X_mcRun4_realistic_v4-v1/GEN-SIM")
 parser.add_argument("--sample_spring24",type=str,default = "/DoubleElectron_FlatPt-1To100-gun/Phase2Spring24DIGIRECOMiniAOD-PU200_Trk1GeV_140X_mcRun4_realistic_v4-v2/GEN-SIM-DIGI-RAW-MINIAOD")
 parser.add_argument("--n",type=int,default=20)
-parser.add_argument("--work_dir",type=str,default="/afs/cern.ch/work/m/mmatthew/private/test_workflow/cms-egamma-hlt-reg/")
+parser.add_argument("--work_dir",type=str,default="/afs/cern.ch/work/s/sakarmak/private/EGammaHLT_Regression_16_1_0_pre2/cms-egamma-hlt-reg")
 parser.add_argument("--gen_sim",action="store_true",default=False)
 args = parser.parse_args()
 
