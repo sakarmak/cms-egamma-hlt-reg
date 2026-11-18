@@ -29,9 +29,12 @@ def get_event(file):
     return evt
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--total_events",type=int,default=300000)
-parser.add_argument("--events_per_job",type=int,default=100)
-parser.add_argument("--dataset",type=str,default="/DoubleElectron_FlatPt-1To100-gun/Phase2Spring24DIGIRECOMiniAOD-PU200_Trk1GeV_140X_mcRun4_realistic_v4-v2/GEN-SIM-DIGI-RAW-MINIAOD")
+#parser.add_argument("--total_events",type=int,default=97010)
+#parser.add_argument("--events_per_job",type=int,default=100)
+#parser.add_argument("--dataset",type=str,default="/DoubleElectron_FlatPt-1To100-gun/Phase2Spring24DIGIRECOMiniAOD-PU200_Trk1GeV_140X_mcRun4_realistic_v4-v2/GEN-SIM-DIGI-RAW-MINIAOD")
+parser.add_argument("--total_events",type=int,default=2000000)
+parser.add_argument("--events_per_job",type=int,default=200)
+parser.add_argument("--dataset",type=str,default="/DoubleElectron_FlatPt-1To100-gun/Phase2Spring24GS-140X_mcRun4_realistic_v4-v1/GEN-SIM")
 args = parser.parse_args()
 dataset = args.dataset
 total_events = args.total_events

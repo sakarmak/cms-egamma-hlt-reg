@@ -5,7 +5,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--work_dir", type=str, default="/afs/cern.ch/work/m/mmatthew/private/test_workflow/cms-egamma-hlt-reg/Data") 
+parser.add_argument("--work_dir", type=str, default="/afs/cern.ch/work/s/sakarmak/private/EGammaHLT_Regression_16_1_0_pre2/cms-egamma-hlt-reg/Data") 
 args = parser.parse_args()
 
 path = args.work_dir

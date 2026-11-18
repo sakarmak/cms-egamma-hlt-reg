@@ -128,7 +128,7 @@ def setup_directory(path="."):
 path = "Spring24"
 l1_file = "../rerunL1_cfg.py"
 hlt_file = "../Phase2_L1P2GT_HLT.py"
-work_dir = "/afs/cern.ch/work/m/mmatthew/private/test_workflow/cms-egamma-hlt-reg/Data"
+work_dir = "/afs/cern.ch/work/s/sakarmak/private/EGammaHLT_Regression_16_1_0_pre2/cms-egamma-hlt-reg/Data"
 setup_directory(path)
 write_cond_file(path)
 write_exec_file(work_dir,path)
@@ -136,5 +136,5 @@ process_l1_config(l1_file,path)
 process_hlt_config(hlt_file,path)
 
 # Make grid proxy available for htcondor to use xrootd. You can also follow the recommendations here: https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRABPrepareLocal 
-os.system("export X509_USER_PROXY=~/.gridProxy")
-os.system("voms-proxy-init --rfc --voms cms -valid 192:00")
+#os.system("export X509_USER_PROXY=~/.gridProxy")
+#os.system("voms-proxy-init --rfc --voms cms -valid 192:00")
